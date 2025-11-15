@@ -9,12 +9,13 @@ export default function Profile() {
   const [user, setUser] = useState({
     id: "",
     name: "",
+    role: "",
     email: "",
     // TODO: avatar: null, // or a URL
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({ user_name: "", email: "" });
+  const [formData, setFormData] = useState({ user_name: "", email: "", role: "" });
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function Profile() {
         if (res.ok) {
           const data = await res.json();
           setUser(data);
-          setFormData({ user_name: data.user_name, email: data.email });
+          setFormData({ user_name: data.user_name, email: data.email, role: data.role });
         } else {
           toast.error("Failed to load profile");
         }
@@ -47,7 +48,7 @@ export default function Profile() {
 
   // Initialize form data from user
   useEffect(() => {
-    setFormData({ user_name: user.user_name, email: user.email });
+    setFormData({ user_name: user.user_name, email: user.email, role: user.role });
   }, [user]);
 
   const handleEditClick = () => {
@@ -55,12 +56,12 @@ export default function Profile() {
   };
 
   const handleCancel = () => {
-    setFormData({ user_name: user.user_name, email: user.email });
+    setFormData({ user_name: user.user_name, email: user.email, role: user.role });
     setIsEditing(false);
   };
 
   const handleSave = async () => {
-    if (!formData.user_name || !formData.email) {
+    if (!formData.user_name || !formData.email || !formData.role) {
       toast.error("Please fill in all fields.");
       return;
     }
@@ -174,6 +175,21 @@ export default function Profile() {
                     />
                   ) : (
                     <p className="text-gray-900 font-medium">{user.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Role</label>
+                  {isEditing ? (
+                    <input
+                      type="email"
+                      value={formData.role}
+                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      disabled={isSaving}
+                    />
+                  ) : (
+                    <p className="text-gray-900 font-medium">{user.role}</p>
                   )}
                 </div>
               </div>

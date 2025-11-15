@@ -73,7 +73,7 @@ function get_user_by_email(email) {
 }
 
 function get_user_by_id(id) {
-  return db.prepare(`SELECT id, user_name, email, created_at FROM login_users WHERE id = ?`).get(id);
+  return db.prepare(`SELECT id, user_name, email, role, created_at FROM login_users WHERE id = ?`).get(id);
 }
 
 function update_user_by_id(id, user_name, email, role) {

@@ -1,4 +1,5 @@
 import VerticalNavbar from "./VerticalNavbar";
+import Recent from "./Recent";
 
 export default function Dashboard() {
   return (
@@ -8,7 +9,7 @@ export default function Dashboard() {
           <VerticalNavbar />
         </div>
         <div className={`2xl:ml-64 lg:ml-28 bg-blue-50 ${`h-screen` ? `h-screen` : `h-full`}`}>
-          {/* <Recent /> */}
+          <Recent />
         </div>
       </div>
     </>

@@ -6,6 +6,7 @@ import Dashboard from "./pages/protected/Dashboard";
 import Profile from "./pages/protected/Profile";
 import Error404 from "./pages/Error404"
 import ProtectedRoute from "./components/ProtectedRoute"
+import AttendanceTable from "./pages/protected/AttendanceTable"
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={
             <ProtectedRoute>
-              <Dashboard />
+              <AttendanceTable />
             </ProtectedRoute>
           } />
           <Route path="/profile" element={
