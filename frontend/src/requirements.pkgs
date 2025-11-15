@@ -1,0 +1,11 @@
+vite
+react-router-dom
+tailwindcss
+better-sqlite3
+react-toastify
+axios
+yup
+formik
+react-chartjs
+chart.js
+chartjs-plugin-datalabels
